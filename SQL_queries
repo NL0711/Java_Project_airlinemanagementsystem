@@ -1,0 +1,45 @@
+create database airlinemanagementsystem;
+use airlinemanagementsystem;
+SET SQL_SAFE_UPDATES = 0;
+
+
+create table login(username varchar(20), password varchar(20));
+create table customers_login(username varchar(50),password varchar(20));
+insert into login values('admin', 'admin');
+insert into customers_login values('john', 'john');
+insert into customers_login values('rakesh', 'rakesh');
+
+select * from login;
+select * from customers_login;
+
+create table flight(f_code varchar(20), f_name varchar(20), source varchar(40), destination varchar(40));
+insert into flight values("1001", "AI-1212", "Delhi", "Mumbai");
+insert into flight values("1002", "AI-1453", "Delhi", "Goa");
+insert into flight values("1003", "AI-1112", "Mumbai", "Chennai");
+insert into flight values("1004", "AI-3222", "Delhi", "Amritsar");
+insert into flight values("1005", "AI-1212", "Delhi", "Ayodhya");
+
+select * from flight;
+
+create table passenger (name varchar(20), nationality varchar(20), phone varchar(10), address varchar(50), aadhar varchar(20), gender varchar(10));
+select * from passenger;
+
+create table reservation(PNR varchar(15), TICKET varchar(20), aadhar varchar(20), name varchar(20), nationality varchar(30), flightname varchar(15), flightcode varchar(20), src varchar(30), des varchar(30), ddate varchar(30));
+select * from reservation;
+
+create table cancel(pnr varchar(20), name varchar(40), cancelno varchar(20), fcode varchar(20), ddate varchar(30));
+select * from cancel
+
+CREATE TABLE booked_customers AS
+SELECT 
+    r.aadhar AS customer_aadhar,
+    r.name AS customer_name,
+    r.flightname AS flight_name,
+    r.flightcode AS flight_code,
+    r.src AS source,
+    r.des AS destination,
+    r.ddate AS departure_date
+FROM 
+    reservation r;
+    
+ SELECT * FROM booked_customers;   
